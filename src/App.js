@@ -1,18 +1,13 @@
-import { gql, useQuery } from '@apollo/client'
+import {useQuery} from '@apollo/client'
 import Persons from './components/Persons'
-
-const ALL_PERSONS = gql`
-query {
-  allPersons {
-    name
-    phone
-    id
-  }
-}
-`
+import PersonForm from './components/PersonForm'
+import {ALL_PERSONS} from './queries'
 
 const App = () => {
-    const result = useQuery(ALL_PERSONS)
+    const result = useQuery(ALL_PERSONS, {
+        // Set the query to poll every two seconds
+        pollInterval: 2000
+    })
 
     if (result.loading) {
         // the query has not received a response yet
@@ -20,7 +15,10 @@ const App = () => {
     }
 
     return (
-        <Persons persons={result.data.allPersons}/>
+        <div>
+            <Persons persons={result.data.allPersons}/>
+            <PersonForm />
+        </div>
     )
 }
 
