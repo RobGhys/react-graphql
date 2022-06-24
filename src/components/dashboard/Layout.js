@@ -55,7 +55,7 @@ const Notify = ({errorMessage}) => {
   )
 }
 
-export default function Layout() {
+const Layout = ({ token, setToken }) => {
   // MUI
   const classes = UseStyles();
   const [open, setOpen] = React.useState(true);
@@ -69,7 +69,7 @@ export default function Layout() {
   // Functionalities
   const result = useQuery(ALL_PERSONS);
   const [errorMessage, setErrorMessage] = useState(null);
-  const [token, setToken] = useState(null);
+  //const [token, setToken] = useState(null);
   const client = useApolloClient()
 
   const notify = (message) => {
@@ -168,3 +168,5 @@ export default function Layout() {
     </div>
   );
 }
+
+export default Layout

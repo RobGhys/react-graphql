@@ -36,7 +36,7 @@ const App = () => {
 
     /* Content of the page when user is logged in */
     return (
-        <div><Layout/></div>
+        <div><Layout setToken={setToken} token={token}/></div>
     )
 }
 
