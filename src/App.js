@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import SignIn from './components/SignIn';
+
 import Layout from './components/dashboard/Layout';
 
 const Notify = ({errorMessage}) => {
@@ -23,6 +24,7 @@ const App = () => {
         }, 10000)
     }
 
+    /* SignIn page */
     if (!token) {
         return (
         <>
@@ -32,10 +34,9 @@ const App = () => {
         )
     }
 
+    /* Content of the page when user is logged in */
     return (
-        <div>
-            <Layout/>
-        </div>
+        <div><Layout/></div>
     )
 }
 

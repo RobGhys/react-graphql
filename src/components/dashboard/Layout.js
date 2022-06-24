@@ -114,12 +114,10 @@ export default function Layout() {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard
+            Shopping
           </Typography>
           <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-            <Button variant="contained" onClick={logout}>logout</Button>
-            </Badge>
+            <Button variant="contained" color="secondary" onClick={logout}>logout</Button>
           </IconButton>
         </Toolbar>
       </AppBar>
