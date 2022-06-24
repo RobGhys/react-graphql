@@ -1,6 +1,12 @@
 import {useState} from 'react'
 import {useQuery} from '@apollo/client'
 import {FIND_PERSON} from '../../queries'
+import { Title } from '@material-ui/icons'
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 
 const Person = ({ person, onClose }) => {
     return (
@@ -36,15 +42,30 @@ const Persons = ({ persons }) => {
     // Render persons list
     return (
         <div>
-            <h2>Persons</h2>
-            {persons.map(p =>
-                <div key={p.name}>
-                    {p.name} {p.phone}
-                    <button onClick={() => setNameToSearch(p.name)}>
-                        show address
-                    </button>
-                </div>
-            )}
+            <Title>Persons</Title>
+            <Table size="small">
+                {/* Header */}
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Name</TableCell>
+                        <TableCell>Phone</TableCell>
+                        <TableCell>Action</TableCell>
+                    </TableRow>
+                </TableHead>
+
+                {/* Body */}
+                <TableBody>
+                    {persons.map(p =>
+                        <TableRow key={p.name}>
+                            <TableCell>{p.name}</TableCell>
+                            <TableCell>{p.phone}</TableCell>
+                            <TableCell><button onClick={() => setNameToSearch(p.name)}>
+                                show address
+                            </button></TableCell>
+                        </TableRow>
+                    )}
+                </TableBody>
+            </Table>
         </div>
     )
 }

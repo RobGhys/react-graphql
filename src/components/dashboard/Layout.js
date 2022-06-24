@@ -69,7 +69,6 @@ const Layout = ({ token, setToken }) => {
   // Functionalities
   const result = useQuery(ALL_PERSONS);
   const [errorMessage, setErrorMessage] = useState(null);
-  //const [token, setToken] = useState(null);
   const client = useApolloClient()
 
   const notify = (message) => {
@@ -117,7 +116,7 @@ const Layout = ({ token, setToken }) => {
             Shopping
           </Typography>
           <IconButton color="inherit">
-            <Button variant="contained" color="secondary" onClick={logout}>logout</Button>
+            <Button variant="outlined" color="secondary" onClick={logout}>logout</Button>
           </IconButton>
         </Toolbar>
       </AppBar>
