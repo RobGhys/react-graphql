@@ -1,10 +1,14 @@
 import { useQuery, useApolloClient } from '@apollo/client'
 import {useState} from 'react';
 
+//import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import { AppBar, Container, Drawer } from '@mui/material';
 import Persons from './components/Persons'
 import PersonForm from './components/PersonForm'
 import PhoneForm from "./components/PhoneForm";
-import LoginForm from './components/Login'
+import SignIn from './components/SignIn';
+
 import {ALL_PERSONS} from './queries'
 
 const Notify = ({errorMessage}) => {
@@ -45,18 +49,22 @@ const App = () => {
         return (
         <>
             <Notify errorMessage={errorMessage} />
-            <LoginForm setToken={setToken} setError={notify} />
+            <SignIn setToken={setToken} setError={notify}></SignIn>
         </>
         )
     }
 
     return (
         <div>
-            <Notify errorMessage={errorMessage}/>
-            <button onClick={logout}>logout</button>
-            <Persons persons={result.data.allPersons}/>
-            <PersonForm setError={notify}/>
-            <PhoneForm setError={notify}/>
+            <AppBar></AppBar>
+            <Drawer></Drawer>
+            <Container maxWidth="sm">
+                <Notify errorMessage={errorMessage}/>
+                <Button variant="contained" onClick={logout}>logout</Button>
+                <Persons persons={result.data.allPersons}/>
+                <PersonForm setError={notify}/>
+                <PhoneForm setError={notify}/>
+            </Container>
         </div>
     )
 }
