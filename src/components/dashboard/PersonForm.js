@@ -26,7 +26,10 @@ const PersonForm = ({ setError }) => {
     const submit = (event) => {
         event.preventDefault();
 
-        createPerson({ variables: {name, phone, street, city } });
+        createPerson({ variables: {
+            name, street, city,
+            phone: phone.length > 0 ? phone : undefined 
+        } });
 
         setName('');
         setPhone('');
@@ -38,7 +41,7 @@ const PersonForm = ({ setError }) => {
         <React.Fragment>
             <Title>Create new</Title>
 
-            <form onSubmit={submit}>
+            <Box component="form" onSubmit={submit} noValidate sx={{ mt: 1 }}>
                 <Grid container spacing={3}>
                     <Grid item xs={12} md={6}>
                     <TextField
@@ -46,7 +49,6 @@ const PersonForm = ({ setError }) => {
                         id="name"
                         label="Name"
                         fullWidth
-                        autoComplete="cc-name"
                         variant="standard"
                         value={name}
                         onChange={({ target }) => setName(target.value)}
@@ -58,7 +60,6 @@ const PersonForm = ({ setError }) => {
                         id="phone"
                         label="Phone Number"
                         fullWidth
-                        autoComplete="cc-number"
                         variant="standard"
                         value={phone}
                         onChange={({ target }) => setPhone(target.value)}
@@ -70,7 +71,6 @@ const PersonForm = ({ setError }) => {
                         id="street"
                         label="Street Name"
                         fullWidth
-                        autoComplete="cc-exp"
                         variant="standard"
                         value={street}
                         onChange={({ target }) => setStreet(target.value)}
@@ -82,7 +82,6 @@ const PersonForm = ({ setError }) => {
                         id="city"
                         label="City"
                         fullWidth
-                        autoComplete="cc-csc"
                         variant="standard"
                         value={city}
                         onChange={({ target }) => setCity(target.value)}
@@ -99,7 +98,7 @@ const PersonForm = ({ setError }) => {
                         Save
                         </Button>
                 </Box>
-            </form>
+            </Box>
         </React.Fragment>
     )
 }

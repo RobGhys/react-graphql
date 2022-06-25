@@ -8,6 +8,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import { Button } from '@mui/material';
 
 const Person = ({ person, onClose }) => {
     return (
@@ -60,9 +61,11 @@ const Persons = ({ persons }) => {
                         <TableRow key={p.name}>
                             <TableCell>{p.name}</TableCell>
                             <TableCell>{p.phone}</TableCell>
-                            <TableCell><button onClick={() => setNameToSearch(p.name)}>
-                                show address
-                            </button></TableCell>
+                            <TableCell>
+                                <Button variant="contained"
+                                        onClick={() => setNameToSearch(p.name)}>
+                                show address</Button>
+                            </TableCell>
                         </TableRow>
                     )}
                 </TableBody>
