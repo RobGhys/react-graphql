@@ -1,7 +1,10 @@
 import {useState} from 'react';
 import SignIn from './components/SignIn';
-
 import Layout from './components/dashboard/Layout';
+
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme();
 
 const Notify = ({errorMessage}) => {
     if (! errorMessage) return null
@@ -28,15 +31,24 @@ const App = () => {
     if (!token) {
         return (
         <>
-            <Notify errorMessage={errorMessage} />
-            <SignIn setToken={setToken} setError={notify}></SignIn>
+            <ThemeProvider theme={theme}>
+                <Notify errorMessage={errorMessage} />
+                <SignIn setToken={setToken} 
+                        setError={notify}></SignIn>
+            </ThemeProvider>
         </>
         )
     }
 
     /* Content of the page when user is logged in */
     return (
-        <div><Layout setToken={setToken} token={token}/></div>
+        <>
+            <ThemeProvider theme={theme}>
+                <Layout 
+                    setToken={setToken} 
+                    token={token}/>
+            </ThemeProvider>
+        </>
     )
 }
 

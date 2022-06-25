@@ -1,7 +1,8 @@
+import * as React from 'react';
 import {useState} from 'react'
 import {useQuery} from '@apollo/client'
 import {FIND_PERSON} from '../../queries'
-import { Title } from '@material-ui/icons'
+import Title from './Title';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -41,7 +42,7 @@ const Persons = ({ persons }) => {
     }
     // Render persons list
     return (
-        <div>
+        <React.Fragment>
             <Title>Persons</Title>
             <Table size="small">
                 {/* Header */}
@@ -66,7 +67,7 @@ const Persons = ({ persons }) => {
                     )}
                 </TableBody>
             </Table>
-        </div>
+        </React.Fragment>
     )
 }
 

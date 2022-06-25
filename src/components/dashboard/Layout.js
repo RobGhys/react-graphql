@@ -14,10 +14,8 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
@@ -28,22 +26,12 @@ import PersonForm from './PersonForm'
 import PhoneForm from "./PhoneForm";
 import UseStyles from './UseStyles';
 import SignIn from '../SignIn';
-
+import Copyright
+ from '../shared/Copyright';
 import {ALL_PERSONS} from '../../queries'
 import { Button } from '@mui/material';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Space Monkey Gs
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
 
 const Notify = ({errorMessage}) => {
   if (! errorMessage) return null
