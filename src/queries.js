@@ -29,18 +29,25 @@ mutation createPerson($name: String!, $street: String!, $city: String!, $phone: 
 }
 `
 
-export const FIND_PERSON = gql`
-query findPersonByName($nameToSearch: String!) {
-    findPerson(name: $nameToSearch) {
-        name
+const PERSON_DETAILS = gql`
+fragment PersonDetails on Person {
+    name
         phone
         id
         address {
             street
             city
-        }   
+        }
+}
+`
+
+export const FIND_PERSON = gql`
+query findPersonByName($nameToSearch: String!) {
+    findPerson(name: $nameToSearch) {
+        ...PersonDetails   
     }
 }
+${PERSON_DETAILS}
 `
 
 export const EDIT_NUMBER = gql`

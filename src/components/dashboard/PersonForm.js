@@ -17,9 +17,17 @@ const PersonForm = ({ setError }) => {
     const [city, setCity] = useState('');
 
     const [ createPerson ] = useMutation(CREATE_PERSON, {
-        refetchQueries: [ { query: ALL_PERSONS } ],
         onError: (error) => {
             setError(error.graphQLErrors[0].message);
+        },
+        update: (cache, response) => {
+            cache.updateQuery(
+                { query: ALL_PERSONS }, 
+                ({ allPersons}) => {
+                    return {
+                    allPersons: allPersons.concat(response.data.addPerson)
+                }
+            })
         }
     })
 
@@ -89,14 +97,14 @@ const PersonForm = ({ setError }) => {
                     </Grid>
                 </Grid>
                 <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
-                    <Button color='secondary' sx={{ mt: 3, ml: 1 }}>
+                    <Button color='inherit' sx={{ mt: 3, ml: 1 }}>
                       Back
                     </Button>
                     <Button variant="contained" 
                             endIcon={<SaveIcon />}
                             type='submit'>
                         Save
-                        </Button>
+                    </Button>
                 </Box>
             </Box>
         </React.Fragment>
